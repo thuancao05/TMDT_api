@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imgur API Image Uploader</title>
+    <script language="JavaScript" type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+    <script language="JavaScript" type="text/javascript" src="/js/jquery-ui-personalized-1.5.2.packed.js"></script>
+    <script language="JavaScript" type="text/javascript" src="/js/sprinkle.js"></script>
+</head>
+
+<body>
+    <h3>A demonstration of how to access a File Upload Button</h3>
+
+    <input type="file" id="myFile">
+    
+    <button id="submitBtn">Submit</button>
+
+    <script>
+            $('#submitBtn').click(function(){
+            var formData = new FormData();
+            formData.append("image", $("#myFile")[0].files[0]);
+
+            $.ajax({
+                url: "https://api.imgur.com/3/image",
+                type: "POST",
+                datatype: "json",
+                headers: {
+                "Authorization": "Client-ID aca6d2502f5bfd8"
+                },
+                data: formData,
+                success: function(response) {
+                console.log(response);
+                var photo = response.data.link;
+                var photo_hash = response.data.deletehash;
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+  
+});
+
+
+    </script>
+
+</body>
+</html>
