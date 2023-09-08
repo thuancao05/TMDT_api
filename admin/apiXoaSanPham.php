@@ -20,10 +20,6 @@ $obj = json_decode(file_get_contents('php://input'));
         $sp_giaGoc = $obj->price;
         $sp_gia = $obj->price;
         $sp_nsx = $obj->date_of_manufacture;
-        // $lesson_link = $_FILES['sp_hinhAnh']['name'];
-        // $lesson_link_temp = $_FILES['sp_hinhAnh']['tmp_name'];
-        // $link_folder = '../image/sanpham/'.$lesson_link;
-        // move_uploaded_file($lesson_link_temp, $link_folder);
         $link_folder = $obj->thumbUrl[0]->thumbUrl;
          $sql = "INSERT INTO sanPham (sp_id, sp_ten, sp_soLuong, sp_moTa, sp_giaGoc,sp_gia, sp_nsx, sp_hinhAnh,dm_id)
                  VALUES (NULL, '$sp_ten', '$sp_soLuong', '$sp_moTa', '$sp_giaGoc', '$sp_gia', '$sp_nsx', '$link_folder', '$dm_id');";

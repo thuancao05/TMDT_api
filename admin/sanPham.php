@@ -115,7 +115,6 @@ else {
             </td>
         </tr>';
             } 
-            echo json_encode($arr);
             ?>
         </tbody>
     </table>

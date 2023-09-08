@@ -8,18 +8,18 @@ header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token , Autho
 include_once('../dbConnection.php');
 
 $method = $_SERVER['REQUEST_METHOD'];
-// echo $method;
+//  echo $method;
 if ($method == 'DELETE') {
     $id = $_GET['id'];
     $sql = "DELETE FROM sanPham WHERE sp_id = " . $id;
     if ($conn->query($sql) == TRUE) {
         // echo '<meta http-equiv="refresh" content="0;URL=?deleted">';
-        echo 'thanh cong';
+        echo ' xoa thanh cong';
     } else {
         echo "Unable to delete data";
     }
 }
-// else{
+ else if ($method == 'POST'){
 $obj = json_decode(file_get_contents('php://input'));   
 //   echo json_encode($obj);
 
@@ -41,5 +41,5 @@ $obj = json_decode(file_get_contents('php://input'));
          else{
              echo"Them that bai";
          }
-
+        }
 ?>

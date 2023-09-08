@@ -42,4 +42,3 @@ $method = $_SERVER['REQUEST_METHOD'];
        echo "0 Result";
    }
 }
-    ?>
