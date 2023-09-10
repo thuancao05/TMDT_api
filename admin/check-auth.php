@@ -7,17 +7,18 @@ header('Access-Control-Max-Age: 1000');
 header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token , Authorization');
 
 
-  session_id( 'admin' );
-  session_start();
-// echo session_id();
+session_id('admin');
+session_start();
 
-//  echo json_encode($_SESSION);
-// $_SESSION['user'] = 'admin';
-if (isset($_SESSION['user'])) {
-  echo json_encode(['authenticated' => true, 'user' => $_SESSION['user']]);
-} else {
+if($_SESSION['check-auth'] == 'true'){
+  if ($_SESSION['user'] == 'admin') {
+    echo json_encode(['authenticated' => true, 'user' => $_SESSION['user']]);
+  } else {
+      echo json_encode(['authenticated' => true, 'user' => $_SESSION['user']]);
+    } 
+  
+}else {
   http_response_code(401);
   echo json_encode(['authenticated' => false]);
   // echo json_encode("chua dang nhap");
-
 }

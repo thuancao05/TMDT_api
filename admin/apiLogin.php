@@ -10,13 +10,31 @@ include_once('../dbConnection.php');
 $obj = json_decode(file_get_contents('php://input'));
 $email = $obj->email;
 $password = $obj->password;
-// Simulate user authentication (replace this with your actual authentication logic)
-if ($email === 'thuan@gmail.com' && $password === 'thuan123') {
-    session_id( 'admin' );
-    session_start();
-    $_SESSION['user'] = 'admin';
-    echo json_encode('Login_pass');
 
-} else {
-    echo json_encode('Login_fail');
+
+$sql = "SELECT nb_email, nb_matKhau FROM nguoiban WHERE nb_email = '".$email."' AND nb_matKhau = '".$password."' ";
+$sql1 = "SELECT nm_email, nm_matKhau FROM nguoimua WHERE nm_email = '".$email."' AND nm_matKhau = '".$password."' ";
+
+$result = $conn->query($sql);
+$result1 = $conn->query($sql1);
+
+if ($result->num_rows > 0) {
+    echo json_encode('Login_pass');
+    session_id('admin');
+    session_start();
+    $_SESSION['check-auth'] = 'true';
+    $_SESSION['user'] = 'admin';
+}else { 
+    if ($result1->num_rows > 0) {
+        echo json_encode('Login_pass');
+        session_id('admin');
+        session_start();
+        $_SESSION['check-auth'] = 'true';
+        $_SESSION['user'] = $email;
+    
+    }else{
+        echo json_encode('Login_fail');
+
+    }
+
 }

@@ -7,16 +7,11 @@ header('Access-Control-Max-Age: 1000');
 header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token , Authorization');
 session_id( 'admin' );
 session_start();
-// echo($_SESSION['user']);
 
-if (isset($_SESSION['user'])) {
-
-    include_once('../dbConnection.php');
-
-    $method = $_SERVER['REQUEST_METHOD'];
-    // echo $method;
-
-    $arr = array();
+include_once('../dbConnection.php');
+$method = $_SERVER['REQUEST_METHOD'];
+// echo $method;
+$arr = array();
     if ($method == "GET") {
         $sql = "SELECT * FROM sanPham";
         $result = $conn->query($sql);
@@ -49,8 +44,5 @@ if (isset($_SESSION['user'])) {
             echo "0 Result";
         }
     }
-}else{
-    echo json_encode("Login faild");
-}
 
 ?>
