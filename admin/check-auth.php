@@ -7,7 +7,7 @@ header('Access-Control-Max-Age: 1000');
 header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token , Authorization');
 
 
-session_id('admin');
+session_id('TMDT');
 session_start();
 
 if($_SESSION['check-auth'] == 'true'){

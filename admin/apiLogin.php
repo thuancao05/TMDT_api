@@ -20,14 +20,14 @@ $result1 = $conn->query($sql1);
 
 if ($result->num_rows > 0) {
     echo json_encode('Login_pass');
-    session_id('admin');
+    session_id('TMDT');
     session_start();
     $_SESSION['check-auth'] = 'true';
     $_SESSION['user'] = 'admin';
 }else { 
     if ($result1->num_rows > 0) {
         echo json_encode('Login_pass');
-        session_id('admin');
+        session_id('TMDT');
         session_start();
         $_SESSION['check-auth'] = 'true';
         $_SESSION['user'] = $email;
