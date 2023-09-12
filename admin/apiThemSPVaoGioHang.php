@@ -66,4 +66,20 @@ if ($method == 'POST') {
         }
         echo json_encode($arr);
     }
+}else if($method == 'DELETE'){
+    // echo json_encode($obj);
+    $id = $_GET['id'];
+
+    if(isset($_SESSION['cart'])  && (count($_SESSION['cart']) >0) ){
+
+        try{
+            array_splice($_SESSION['cart'], $id, 1); // Xóa phần tử có id tại giỏ hàng
+            echo json_encode("unchoose success");
+
+        }catch(Exception $e){
+            http_response_code(401);
+            echo json_encode("unchoose fail");
+        }
+
+    }
 }
