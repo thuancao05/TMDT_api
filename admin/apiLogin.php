@@ -13,7 +13,7 @@ $password = $obj->password;
 
 
 $sql = "SELECT nb_email, nb_matKhau FROM nguoiban WHERE nb_email = '".$email."' AND nb_matKhau = '".$password."' ";
-$sql1 = "SELECT nm_id, nm_email, nm_matKhau FROM nguoimua WHERE nm_email = '".$email."' AND nm_matKhau = '".$password."' ";
+$sql1 = "SELECT nm_id, nm_email,nm_ten, nm_matKhau FROM nguoimua WHERE nm_email = '".$email."' AND nm_matKhau = '".$password."' ";
 
 $result = $conn->query($sql);
 $result1 = $conn->query($sql1);
@@ -33,6 +33,7 @@ if ($result->num_rows > 0) {
         $_SESSION['user'] = $email;
         $row = $result1->fetch_assoc();
         $_SESSION['user_id'] = $row['nm_id'];
+        $_SESSION['user_name'] = $row['nm_ten'];
 
     }else{
         echo json_encode('Login_fail');

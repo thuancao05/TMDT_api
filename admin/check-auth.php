@@ -14,7 +14,7 @@ if($_SESSION['check-auth'] == 'true'){
   if ($_SESSION['user'] == 'admin') {
     echo json_encode(['authenticated' => true, 'user' => $_SESSION['user']]);
   } else {
-      echo json_encode(['authenticated' => true, 'user' => $_SESSION['user']]);
+      echo json_encode(['authenticated' => true, 'user' => $_SESSION['user'], 'username' => $_SESSION['user_name']]);
     } 
   
 }else {
