@@ -14,10 +14,6 @@ $method = $_SERVER['REQUEST_METHOD'];
 //  echo $method;
 $arr = array();
 
-// $id = $_GET['id'];
-// $obj = json_decode(file_get_contents('php://input'));   
-// echo json_encode($obj);
-
 $email =  $_SESSION['user'];
 if ($method == 'GET') {
     $sql = "SELECT * FROM nguoiMua WHERE nm_email = '" . $email . "' ";

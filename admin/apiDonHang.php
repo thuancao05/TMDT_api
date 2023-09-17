@@ -32,7 +32,8 @@ if ($method == 'POST') {
     //  echo json_encode($obj);
 
     $id =  $obj;
-    $sql = "SELECT * FROM sanPham WHERE sp_id = " . $id;
+    $sql = "SELECT * FROM donHang AS dh JOIN trangThai AS tt JOIN nguoiMua AS nm
+            WHERE dh_id = '$id' AND dh.tt_id = tt.tt_id AND nm.nm_id = dh.nm_id "; 
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
 
@@ -56,4 +57,20 @@ if ($method == 'DELETE') {
         echo "Unable to delete data";
     }
 }
-?>
+if ($method == 'PUT') {
+    $postData = file_get_contents("php://input");
+    // Decode the JSON data sent in the request
+    $requestData = json_decode($postData, true);
+
+    $dh_id = $requestData['id'];
+    $tt_id = $requestData['status_id'];
+    
+    $sql = "UPDATE donHang SET tt_id = '$tt_id'
+             WHERE dh_id = '$dh_id';";
+
+    if ($conn->query($sql) == TRUE) {
+        echo json_encode("Sua thanh cong");
+    } else {
+        echo json_encode("Sua that bai");
+    }
+}

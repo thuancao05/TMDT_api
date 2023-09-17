@@ -39,7 +39,8 @@ $obj = json_decode(file_get_contents('php://input'));
              echo"Them thanh cong";
          }
          else{
-             echo"Them that bai";
+            http_response_code(400);
+
          }
         }
 ?>
