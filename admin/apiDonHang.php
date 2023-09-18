@@ -32,8 +32,8 @@ if ($method == 'POST') {
     //  echo json_encode($obj);
 
     $id =  $obj;
-    $sql = "SELECT * FROM donHang AS dh JOIN trangThai AS tt JOIN nguoiMua AS nm
-            WHERE dh_id = '$id' AND dh.tt_id = tt.tt_id AND nm.nm_id = dh.nm_id "; 
+    $sql = "SELECT * FROM donHang AS dh JOIN trangThai AS tt JOIN nguoiMua AS nm JOIN diaChi AS dc
+            WHERE dh_id = '$id' AND dh.tt_id = tt.tt_id AND nm.nm_id = dh.nm_id AND dc.nm_id = nm.nm_id"; 
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
 

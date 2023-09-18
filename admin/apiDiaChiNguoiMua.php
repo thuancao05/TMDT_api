@@ -22,14 +22,13 @@ if ($method == "GET") {
                FROM diachi 
                WHERE nm_email = '$nm_email'";
     $result = $conn->query($sql_diaChi);
-    if($result -> num_rows > 0) {    
-        while($row = $result -> fetch_assoc()){
-               array_push($arr, $row);
-           } 
-           echo json_encode($arr);
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            array_push($arr, $row);
+        }
+        echo json_encode($arr);
+    } else {
+        echo "0 Result";
     }
-   else{
-       echo "0 Result";
-   }
 }
-?>
+
