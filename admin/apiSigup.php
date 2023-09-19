@@ -11,13 +11,14 @@ $obj = json_decode(file_get_contents('php://input'));
 $nm_ten = $obj->name;
 $nm_email = $obj->email;
 $nm_matKhau = $obj->password;
+$nm_sdt = $obj->phone;
 
 $sql = "SELECT * FROM nguoiMua WHERE nm_email = '".$nm_email."' ";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     echo json_encode("Email already exists");
 } else {
-    $sql = "INSERT INTO nguoimua (nm_id, nm_ten, nm_email, nm_matkhau) VALUES (NULL, '$nm_ten', '".$nm_email."', '$nm_matKhau');";
+    $sql = "INSERT INTO nguoimua (nm_id, nm_ten, nm_email,nm_sdt, nm_matkhau) VALUES (NULL, '$nm_ten', '".$nm_email."' , '".$nm_sdt."', '$nm_matKhau');";
     if($conn -> query($sql) == TRUE){
         echo json_encode("Register successfully !");
     }
