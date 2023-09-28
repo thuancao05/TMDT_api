@@ -16,6 +16,7 @@ if ($method == 'DELETE') {
         // echo '<meta http-equiv="refresh" content="0;URL=?deleted">';
         echo ' xoa thanh cong';
     } else {
+        http_response_code(400);
         echo "Unable to delete data";
     }
 }

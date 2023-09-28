@@ -64,7 +64,8 @@ if ($method == 'POST') {
             $tongTien += $thanhTien;
             array_push($arr, $sanpham);
         }
-        echo json_encode($arr);
+        $reversedArray = array_reverse($arr);
+        echo json_encode($reversedArray);
     }
 } else if ($method == 'DELETE') {
     // echo json_encode($obj);
