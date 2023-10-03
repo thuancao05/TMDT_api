@@ -25,7 +25,7 @@ if ($method == 'GET') {
         }
         echo json_encode($arr);
     } else {
-        echo "0 Result";
+        echo json_encode("FindNotUser");
     }
 } else if ($method == 'POST') {
     // $obj = json_decode(file_get_contents('php://input'));
