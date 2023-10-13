@@ -16,7 +16,8 @@ $arr = array();
 
 $email =  $_SESSION['user'];
 if ($method == 'GET') {
-    $sql = "SELECT * FROM nguoiMua WHERE nm_email = '" . $email . "' ";
+    if($email == 'admin' ){
+    $sql = "SELECT * FROM nguoiMua ";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
 
@@ -26,7 +27,20 @@ if ($method == 'GET') {
         echo json_encode($arr);
     } else {
         echo json_encode("FindNotUser");
-    }
+    }}
+    else{
+        $sql = "SELECT * FROM nguoiMua WHERE nm_email = '" . $email . "' ";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+    
+            while ($row = $result->fetch_assoc()) {
+                array_push($arr, $row);
+            }
+            echo json_encode($arr);
+        } else {
+            echo json_encode("FindNotUser");
+     }}
+    
 } else if ($method == 'POST') {
     // $obj = json_decode(file_get_contents('php://input'));
     // echo json_encode($obj);
@@ -47,5 +61,16 @@ if ($method == 'GET') {
         echo json_encode("Sua thanh cong");
     } else {
         echo json_encode("Sua that bai");
+    }
+}
+if ($method == 'DELETE') {
+    $id = $_GET['id'];
+    $sql = "DELETE FROM nguoiMua WHERE nm_id = " . $id;
+    if ($conn->query($sql) == TRUE) {
+        // echo '<meta http-equiv="refresh" content="0;URL=?deleted">';
+        echo ' xoa thanh cong';
+    } else {
+        http_response_code(400);
+        echo "Unable to delete data";
     }
 }

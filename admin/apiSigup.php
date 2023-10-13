@@ -18,7 +18,7 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     echo json_encode("Email already exists");
 } else if($nm_ten !=''){
-    $sql = "INSERT INTO nguoimua (nm_id, nm_ten, nm_email,nm_sdt, nm_matkhau) VALUES (NULL, '$nm_ten', '".$nm_email."' , '".$nm_sdt."', '$nm_matKhau');";
+    $sql = "INSERT INTO nguoimua (nm_id, nm_ten, nm_email,nm_sdt, nm_matkhau, nm_trangthai) VALUES (NULL, '$nm_ten', '".$nm_email."' , '".$nm_sdt."', '$nm_matKhau', '1');";
     if($conn -> query($sql) == TRUE){
         echo json_encode("Register successfully !");
     }
