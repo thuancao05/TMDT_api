@@ -22,6 +22,7 @@ $tongDonHang = $requestData['tongtien'];
 $soLuongSanPham = $requestData['tongSL'];
 $ghiChu = $requestData['ghichu'];
 
+if($soLuongSanPham > 0){
 // echo json_encode($requestData);
 $tt_id = 1;
 $pttt = 1;
@@ -31,15 +32,15 @@ $sql = "INSERT INTO donhang (dh_tongThanhToan, dh_pttt, nm_id, dh_soLuong, dh_gh
 
 
 if($conn -> query($sql) == TRUE){
-    // echo json_encode("Ordered successfully !");
+    echo json_encode("Ordered successfully !");
 
 $sql_lastid = "SELECT dh_id FROM donHang 
-ORDER BY dh_id DESC 
-LIMIT 1;";
+                ORDER BY dh_id DESC 
+                LIMIT 1;";
 $result = $conn->query($sql_lastid);
 $row = $result->fetch_assoc();
 $last_id = $row['dh_id'];
-
+echo json_encode($last_id);
 
 foreach ($_SESSION['cart'] as $sanpham){
     $sql1 = "INSERT INTO giohang (dh_id, sp_id, gh_tenSanPham, gh_img, gh_donGia, gh_soLuong, nm_id)
@@ -54,4 +55,5 @@ echo json_encode($last_id);
 
 //  echo json_encode("Thanh cong");
 
+}
 }

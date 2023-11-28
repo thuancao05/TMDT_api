@@ -15,7 +15,7 @@ $nm_id =$_SESSION['user_id'];
 $arr = array();
 if ($method == "GET") {
     $sql = "SELECT * FROM donHang AS dh JOIN trangThai AS tt JOIN nguoiMua AS nm
-                    WHERE dh.tt_id = tt.tt_id AND nm.nm_id = dh.nm_id AND dh.nm_id = '$nm_id'";
+                    WHERE dh.tt_id = tt.tt_id AND nm.nm_id = dh.nm_id AND dh.nm_id = '$nm_id' ORDER BY dh_id DESC";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
 
